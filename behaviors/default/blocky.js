@@ -12,7 +12,6 @@ class BlockyPawn extends PawnBehavior  {
     setup() {
         const THREE = Microverse.THREE;
         // the 3D object will likely not be loaded yet.
-      
         this.subscribe(this.id, "3dModelLoaded", "modelLoaded");
         
     }
@@ -20,10 +19,43 @@ class BlockyPawn extends PawnBehavior  {
         const THREE = Microverse.THREE;
         let scene = this.shape.children[0];
         // set all to wireframe
-        scene.traverse((obj => obj.material = new THREE.MeshBasicMaterial( { color: 0xeeeeff, wireframe: true } ) ))
+        console.log("Number of children: ", this.shape.children.length)
+        scene.traverse((obj => 
+            { 
+                let group = null; 
+        
+                console.log("ID: ",obj.id, "Name ", obj.name);
+                obj.material = new THREE.MeshBasicMaterial({color: 0xa5a5ff})
+                obj.material.transparent = true; 
+                obj.material.opacity = 0.15; 
+
+                const geometry = obj.geometry;
+                console.log("Geometry: ", geometry);
+                console.log("Object", obj);
+                if (obj.type = "Group")
+                {
+                    group = obj; 
+                    console.log("Group found");
+                }
+                if (geometry)
+                {
+                    const wireframe = new THREE.WireframeGeometry( geometry );
+                    const line = new THREE.LineSegments( wireframe );
+                    line.material = new THREE.LineBasicMaterial({color:0xa0a0ff, linewidth: 5 });
+                    line.material.depthTest = false;
+                    line.material.opacity = 0.5;
+                    line.material.transparent = true;
+                    console.log("Add a line");
+                    // in next version the line as to be added to group, not to scene
+                    scene.add(line);
+                }
+              
+                
+            } ))
+        console.log("Number Elements in Scene:", scene.children.length);
         // this is just as excersise
-        this.scaleTo([1.0, 2.0, 0.6]);
-        this.translateTo([0.0, 3.0, -7.0]) ;
+        this.scaleTo([1.0, 1.0, 0.8]);
+        this.translateTo([0.0, 2, -10.0]) ;
     }
 }
 
