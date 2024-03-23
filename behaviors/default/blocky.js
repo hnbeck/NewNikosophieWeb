@@ -22,8 +22,6 @@ class BlockyPawn extends PawnBehavior  {
         console.log("Number of children: ", this.shape.children.length)
         scene.traverse((obj => 
             { 
-                let group = null; 
-        
                 console.log("ID: ",obj.id, "Name ", obj.name);
                 obj.material = new THREE.MeshBasicMaterial({color: 0xa5a5ff})
                 obj.material.transparent = true; 
@@ -32,25 +30,19 @@ class BlockyPawn extends PawnBehavior  {
                 const geometry = obj.geometry;
                 console.log("Geometry: ", geometry);
                 console.log("Object", obj);
-                if (obj.type = "Group")
-                {
-                    group = obj; 
-                    console.log("Group found");
-                }
+               
                 if (geometry)
                 {
+                    // add a wireframe version of the object
                     const wireframe = new THREE.WireframeGeometry( geometry );
                     const line = new THREE.LineSegments( wireframe );
                     line.material = new THREE.LineBasicMaterial({color:0xa0a0ff, linewidth: 5 });
                     line.material.depthTest = false;
                     line.material.opacity = 0.5;
                     line.material.transparent = true;
-                    console.log("Add a line");
-                    // in next version the line as to be added to group, not to scene
-                    scene.add(line);
+                    obj.parent.add(line);
                 }
               
-                
             } ))
         console.log("Number Elements in Scene:", scene.children.length);
         // this is just as excersise
