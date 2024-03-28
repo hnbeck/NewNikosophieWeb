@@ -101,7 +101,7 @@ class LightPawn extends PawnBehavior {
         if (!options.dataLocation) {return;}
         return this.getBuffer(options.dataLocation).then((buffer) => {
             return assetManager.load(buffer, dataType, Microverse.THREE, options).then((texture) => {
-              /*  let TRM = this.service("ThreeRenderManager");
+               let TRM = this.service("ThreeRenderManager");
                 let renderer = TRM.renderer;
                 let scene = TRM.scene;
                 let pmremGenerator = new Microverse.THREE.PMREMGenerator(renderer);
@@ -116,7 +116,7 @@ class LightPawn extends PawnBehavior {
                 // we don't set the color space for exrBackground as PMREM generator
                 // spits out purposefully
                 // srgb-linear color space and we don't necessarily override it.
-                // exrBackground.colorSpace = THREE.SRGBColorSpace;
+                exrBackground.colorSpace = THREE.SRGBColorSpace;
 
                 let bg = scene.background;
                 let e = scene.environment;
@@ -124,7 +124,7 @@ class LightPawn extends PawnBehavior {
                 scene.environment = exrBackground;
                 if(e !== bg) if(bg) bg.dispose();
                 if(e) e.dispose();
-                texture.dispose();*/
+                texture.dispose();
             }).then(() => {
                 if (this.actor._cardData.loadSynchronously) {
                     this.publish(

@@ -37,7 +37,7 @@ class GroundPawn extends PawnBehavior  {
                     const line = new THREE.LineSegments( wireframe );
                     line.material = new THREE.LineBasicMaterial({color:0xa0a0ff, linewidth: 5 });
                     line.material.depthTest = false;
-                    line.material.opacity = 0.1;
+                    line.material.opacity = 0.2;
                     line.material.transparent = true;
                     line.applyMatrix4(obj.matrix);
                     obj.parent.add(line);
