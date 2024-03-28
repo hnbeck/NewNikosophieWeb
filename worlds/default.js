@@ -21,7 +21,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js", "blocky.js"
+        "lights.js", "blocky.js", "ground.js"
     ];
 
     Constants.DefaultCards = [
@@ -30,6 +30,7 @@ export function init(Constants) {
                 name:"world model",
                 layers: ["walk"],
                 type: "3d",
+                behaviorModules: ["Ground"],
                 singleSided: true,
                 shadow: true,
                 translation:[0, -1.7, 0],
@@ -48,8 +49,8 @@ export function init(Constants) {
                 layers: ["light"],
                 type: "lighting",
                 behaviorModules: ["Light"],
-                clearColor: 0x000000,
-                dataLocation: "./assets/img/horizont.jpg",
+                clearColor: 0x0505a0,
+                dataLocation: "./assets/img/nightsky.jpg",
                 fileName: "/horizont.jpg",
                 dataType: "jpg",
                 
@@ -57,7 +58,7 @@ export function init(Constants) {
         },
         { card: {
             behaviorModules: ["Blocky"],
-            name: "test",
+            name: "blocky",
             layers: ["pointer"],
             type: "3d",
             modelType: "wrl",

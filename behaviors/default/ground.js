@@ -8,7 +8,7 @@
 import { Quaternion, Vector3 } from "three";
 import {PawnBehavior} from "../PrototypeBehavior";
 
-class BlockyPawn extends PawnBehavior  {
+class GroundPawn extends PawnBehavior  {
     setup() {
         const THREE = Microverse.THREE;
         // the 3D object will likely not be loaded yet.
@@ -19,47 +19,41 @@ class BlockyPawn extends PawnBehavior  {
         const THREE = Microverse.THREE;
         let scene = this.shape.children[0];
         // set all to wireframe
-        console.log("Number of children: ", this.shape.children.length)
-        // we are responsible for blocky only 
-        if (scene.name == "blocky")
+        console.log("Number of Ground children: ", this.shape.children.length);
+        console.log("Scena name: ", scene.name);
+        if (scene.name == "world model")
         {
-        scene.traverse((obj => 
-            { 
+            scene.traverse((obj => 
+            {  
                 const geometry = obj.geometry;
-                console.log("Geometry: ", geometry);
-                console.log("Object", obj);
-            
+                console.log("Ground obj", obj);
+
                 if (geometry)
                 {
-                    if (obj.material) obj.material.dispose();
-                    obj.material = new THREE.MeshBasicMaterial({color: 0xa5a5ff})
                     obj.material.transparent = true; 
-                    obj.material.opacity = 0.35; 
+                    obj.material.opacity = 0.9; 
                     // add a wireframe version of the object
                     const wireframe = new THREE.WireframeGeometry( geometry );
                     const line = new THREE.LineSegments( wireframe );
                     line.material = new THREE.LineBasicMaterial({color:0xa0a0ff, linewidth: 5 });
                     line.material.depthTest = false;
-                    line.material.opacity = 0.5;
+                    line.material.opacity = 0.1;
                     line.material.transparent = true;
-                  
+                    line.applyMatrix4(obj.matrix);
                     obj.parent.add(line);
-                }
+               }
                 
             } ))
         }
-        console.log("Number Elements in Scene:", scene.children.length);
-        // this is just as excersise
-        this.scaleTo([1.0, 1.0, 0.8]);
-        this.translateTo([0.0, 2, -10.0]) ;
+       
     }
 }
 
 export default {
     modules: [
         {
-            name: "Blocky",
-            pawnBehaviors: [BlockyPawn]
+            name: "Ground",
+            pawnBehaviors: [GroundPawn]
         }
     ]
 }

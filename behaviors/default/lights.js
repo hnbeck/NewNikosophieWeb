@@ -21,7 +21,7 @@ class LightPawn extends PawnBehavior {
         this.removeLights();
         this.lights = [];
 
-        const ambient = new THREE.AmbientLight( 0xffffff, .2);
+        const ambient = new THREE.AmbientLight( 0xffffff, .8);
         group.add(ambient);
         this.lights.push(ambient);
 
@@ -41,15 +41,15 @@ class LightPawn extends PawnBehavior {
         group.add(sun);
         this.lights.push(sun);
 
-        const blueLight = new THREE.DirectionalLight(0x444488, 0.5);
+       /* const blueLight = new THREE.DirectionalLight(0x444488, 0.3);
         blueLight.position.set(1, 100, 150);
         group.add(blueLight);
         this.lights.push(blueLight);
 
-        const redLight = new THREE.DirectionalLight(0x774444, 0.5);
+        const redLight = new THREE.DirectionalLight(0x774444, 0.3);
         redLight.position.set(1, 100, -150);
         group.add(redLight);
-        this.lights.push(redLight);
+        this.lights.push(redLight);*/
 
         this.constructBackground(this.actor._cardData);
 
@@ -101,7 +101,7 @@ class LightPawn extends PawnBehavior {
         if (!options.dataLocation) {return;}
         return this.getBuffer(options.dataLocation).then((buffer) => {
             return assetManager.load(buffer, dataType, Microverse.THREE, options).then((texture) => {
-                let TRM = this.service("ThreeRenderManager");
+              /*  let TRM = this.service("ThreeRenderManager");
                 let renderer = TRM.renderer;
                 let scene = TRM.scene;
                 let pmremGenerator = new Microverse.THREE.PMREMGenerator(renderer);
@@ -124,7 +124,7 @@ class LightPawn extends PawnBehavior {
                 scene.environment = exrBackground;
                 if(e !== bg) if(bg) bg.dispose();
                 if(e) e.dispose();
-                texture.dispose();
+                texture.dispose();*/
             }).then(() => {
                 if (this.actor._cardData.loadSynchronously) {
                     this.publish(
