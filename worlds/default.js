@@ -50,7 +50,7 @@ export function init(Constants) {
                 type: "lighting",
                 behaviorModules: ["Light"],
                 clearColor: 0x0505a0,
-                dataLocation: "./assets/img/nightsky.jpg",
+                dataLocation: "./assets/img/skynight.jpg",
                 fileName: "/horizont.jpg",
                 dataType: "jpg",
                 
