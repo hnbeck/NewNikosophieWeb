@@ -25,7 +25,7 @@ class LightPawn extends PawnBehavior {
         group.add(ambient);
         this.lights.push(ambient);
 
-        const sun = new THREE.DirectionalLight( 0xffffff, 0.3 );
+        const sun = new THREE.DirectionalLight( 0xffffff, 0.4 );
         sun.position.set(9, 150, -10);
         sun.castShadow = true;
         sun.shadow.blurSamples = 5;
@@ -41,12 +41,12 @@ class LightPawn extends PawnBehavior {
         group.add(sun);
         this.lights.push(sun);
 
-       /* const blueLight = new THREE.DirectionalLight(0x444488, 0.3);
+        /*const blueLight = new THREE.DirectionalLight(0x444488, 0.3);
         blueLight.position.set(1, 100, 150);
         group.add(blueLight);
-        this.lights.push(blueLight);
+        this.lights.push(blueLight);*/
 
-        const redLight = new THREE.DirectionalLight(0x774444, 0.3);
+        /*const redLight = new THREE.DirectionalLight(0x774444, 0.3);
         redLight.position.set(1, 100, -150);
         group.add(redLight);
         this.lights.push(redLight);*/
